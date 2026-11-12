@@ -114,3 +114,60 @@ The application follows these processing steps:
 - NumPy
 - Pillow
 - Uvicorn
+
+API Testing and Integration
+
+The project provides a REST API built using FastAPI to detect damaged vehicle parts from uploaded images.
+
+API Endpoint
+
+- Endpoint: "/detection"
+- Method: POST
+- Input: Vehicle image file
+- Output: JSON response containing detected damage classes, confidence scores, and bounding box coordinates.
+
+Running the Application
+
+1. Navigate to the "my_fastapi_app" directory.
+2. Install the required dependencies using the project's requirements file, if available.
+3. Start the application:
+
+python main.py
+
+4. The FastAPI server runs on port "8080".
+
+Testing Through Swagger UI
+
+Open the following URL in your browser after starting the server:
+
+http://localhost:8080/docs
+
+1. Locate the "/detection" endpoint.
+2. Select POST.
+3. Click Try it out.
+4. Upload a vehicle damage image.
+5. Click Execute.
+6. View the JSON prediction response.
+
+Prediction Output
+
+The API returns three main fields:
+
+- "boxes": Coordinates of detected damaged regions.
+- "confidences": Confidence scores of the predictions.
+- "classes": Predicted vehicle damage categories.
+
+Supported Damage Categories
+
+1. Damaged Door
+2. Damaged Window
+3. Damaged Headlight
+4. Damaged Mirror
+5. Dent
+6. Damaged Hood
+7. Damaged Bumper
+8. Damaged Windshield
+
+Contributor
+
+Mouli – API testing and project usage documentation.
