@@ -48,3 +48,69 @@ Done!
 Contributor: Mouli
 Contributor: Aishwarya
 
+## Backend API Implementation
+
+The backend is developed using FastAPI and OpenCV to perform vehicle damage detection using a trained YOLOv8 model exported in ONNX format.
+
+### Model Initialization
+
+The `Detection` class initializes the trained ONNX model using OpenCV's DNN module. It defines eight vehicle damage categories:
+
+- Damaged Door
+- Damaged Window
+- Damaged Headlight
+- Damaged Mirror
+- Dent
+- Damaged Hood
+- Damaged Bumper
+- Damaged Windshield
+
+### Image Processing and Inference
+
+The application follows these processing steps:
+
+1. Receives an uploaded vehicle image.
+2. Converts the uploaded image into RGB format.
+3. Converts the image into a NumPy array.
+4. Creates an input blob with a size of 640 × 640.
+5. Passes the image to the trained ONNX model.
+6. Processes model predictions to identify damage categories and bounding boxes.
+7. Applies Non-Maximum Suppression (NMS) to filter overlapping detections.
+
+### API Endpoint
+
+**Endpoint:** `/detection`
+
+**Method:** POST
+
+**Input:** Vehicle image uploaded as a file.
+
+**Response:** JSON containing detected classes, confidence scores and bounding boxes.
+
+### Example JSON Response
+
+```json
+{
+  "boxes": [
+    [120, 80, 200, 150]
+  ],
+  "confidences": [
+    95.6
+  ],
+  "classes": [
+    "damaged bumper"
+  ]
+}
+```
+
+*The above response is illustrative; actual values depend on the uploaded image and model predictions.*
+
+### Backend Technologies
+
+- Python
+- FastAPI
+- OpenCV DNN
+- ONNX
+- NumPy
+- Pillow
+- Uvicorn
